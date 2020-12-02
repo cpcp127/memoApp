@@ -10,4 +10,4 @@
 - flutter(Dart)
 
 ## 구성 및 캡쳐
-[lib/goologin.dart]
+-goologin.dart(https://github.com/cpcp127/memoApp/blob/master/lib/goologin.dart)
