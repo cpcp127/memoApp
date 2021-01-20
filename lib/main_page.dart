@@ -1,13 +1,12 @@
 import 'dart:ui';
 
 import 'package:capston2/accout_page.dart';
+import 'package:capston2/bottom_navigation_provider.dart';
+import 'package:capston2/calendars.dart';
 import 'package:capston2/memoboard.dart';
-import 'file:///C:/Users/cpcp1/FlutterProjects/capston2/lib/schedule_list/schedule.dart';
-import 'package:capston2/schedule_main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -17,76 +16,54 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   bool isLoading = false;
   final GoogleSignIn googleSignIn = GoogleSignIn();
-  int _selectedIndex=0;
+  BottomNavigationProvider _bottomNavigationProvider;
+  Widget _navigationBody() {
+    switch (_bottomNavigationProvider.currentPage) {
+      case 0:
+        return MyMemo();
+        break;
+      case 1:
+        return MyAccount();
+        break;
+      case 2:
+        return MyCalendars();
+        break;
+    }
+    return Container();
+  }
 
-  List _pages=[MyMemo(),MyAccount(),MainSchedule()];
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-
-      body: Center(child:_pages[_selectedIndex]),
-      bottomNavigationBar: BottomNavigationBar(
-       // backgroundColor: Color(0xccff9a9e),
-          onTap: _onItemTapped,
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.pinkAccent,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.add_circle),title: Text('메모하기',style: TextStyle(fontSize: 13),)),
-            BottomNavigationBarItem(icon: Icon(Icons.account_circle),title: Text('마이페이지',style: TextStyle(fontSize: 13))),
-            BottomNavigationBarItem(icon: Icon(Icons.event),title: Text('메모지',style: TextStyle(fontSize: 13)))
-          ]),
+  Widget _bottomNavigationBarWidget() {
+    return BottomNavigationBar(
+      items: [
+        BottomNavigationBarItem(
+            icon: Icon(Icons.add_circle),
+            title: Text(
+              '메모하기',
+              style: TextStyle(fontSize: 13),
+            )),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            title: Text('마이페이지', style: TextStyle(fontSize: 13))),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            title: Text('페이지', style: TextStyle(fontSize: 13))),
+      ],
+      currentIndex: _bottomNavigationProvider.currentPage,
+      selectedItemColor: Colors.red,
+      onTap: (index) {
+        //provider navigation state:
+        //프로바이더로 네비게이션 상태 데이터 관리
+        _bottomNavigationProvider.updateCurrentPage(index);
+      },
     );
   }
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex=index;
-    });
-  }
-  handleLoginOutPopup() {
-    Alert(
-      context: context,
-      type: AlertType.info,
-      title: "Login Out",
-      desc: "Do you want to login out now?",
-      buttons: [
-        DialogButton(
-          child: Text(
-            "No",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () => Navigator.pop(context),
-          color: Colors.teal,
-        ),
-        DialogButton(
-          child: Text(
-            "Yes",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () {
-            handleSignOut();
 
-
-          },
-          color: Colors.teal,
-        )
-      ],
-    ).show();
-  }
-
-  Future<Null> handleSignOut() async {
-    this.setState(() {
-      isLoading = true;
-    });
-
-
-    await googleSignIn.signOut();
-
-    this.setState(() {
-      isLoading = false;
-    });
-
-
-    SystemNavigator.pop();
-
+  @override
+  Widget build(BuildContext context) {
+    _bottomNavigationProvider = Provider.of<BottomNavigationProvider>(context);
+    return Scaffold(
+      body: _navigationBody(),
+      bottomNavigationBar: _bottomNavigationBarWidget(),
+    );
   }
 }
