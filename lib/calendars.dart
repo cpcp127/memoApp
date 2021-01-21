@@ -16,7 +16,7 @@ class MyCalendars extends StatefulWidget {
 class _MyCalendarsState extends State<MyCalendars>
     with TickerProviderStateMixin {
   final dbref = FirebaseDatabase.instance.reference();
-  String countSch = '';
+  List<Map<dynamic, dynamic>> countSch = [];
   List<Map<dynamic, dynamic>> lists = [];
   final Map<DateTime, List> _holidays = {
     DateTime(2021, 1, 1): ['New Year\'s Day'],
@@ -83,8 +83,6 @@ class _MyCalendarsState extends State<MyCalendars>
   void _onVisibleDaysChanged(
       DateTime month, DateTime last, CalendarFormat format) {
     print('CALLBACK: _onVisibleDaysChanged');
-
-    setState(() {});
   }
 
   void _onCalendarCreated(
@@ -107,11 +105,12 @@ class _MyCalendarsState extends State<MyCalendars>
               children: <Widget>[
                 Column(
                   children: <Widget>[
+                    countSchedule(),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      '이번달 스케줄 수',
+                      '$monthDay월달 스케줄 수',
                       style: TextStyle(fontSize: 15),
                     )
                   ],
@@ -211,7 +210,8 @@ class _MyCalendarsState extends State<MyCalendars>
             .child(user.displayName)
             .child(yearDay + "년")
             .child(monthDay + "월")
-            .child(dateFormat)
+            .orderByChild("날짜")
+            .equalTo(yearDay + "년" + monthDay + "월" + dayDay + "일")
             .once(),
         builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
           if (snapshot.hasData) {
@@ -387,5 +387,38 @@ class _MyCalendarsState extends State<MyCalendars>
         ).show();
       },
     );
+  }
+
+  Widget countSchedule() {
+    return FutureBuilder(
+        future: dbref
+            .child(user.displayName)
+            .child(yearDay + "년")
+            .child(monthDay + "월")
+            .once(),
+        builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
+          if (snapshot.hasData) {
+            countSch.clear();
+            Map<dynamic, dynamic> values = snapshot.data.value;
+            if (values != null) {
+              values.forEach((key, values) {
+                countSch.add(values);
+              });
+            } else {
+              return Text(
+                '0',
+                style: TextStyle(color: Colors.red),
+              );
+            }
+            return Container(
+              child: Text(countSch.length.toString()),
+            );
+          } else {
+            return Text(
+              '로딩중',
+              style: TextStyle(fontSize: 25),
+            );
+          }
+        });
   }
 }

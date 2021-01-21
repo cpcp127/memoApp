@@ -247,7 +247,6 @@ class _MyMemoState extends State<MyMemo> with SingleTickerProviderStateMixin {
                               .child(user.displayName)
                               .child(yearDate)
                               .child(monthDate)
-                              .child(_date.toString().replaceAll(" ", ""))
                               .push()
                               .set({
                             '할일': memoValue(),

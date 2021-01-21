@@ -23,10 +23,10 @@ class _MainPageState extends State<MainPage> {
         return MyMemo();
         break;
       case 1:
-        return MyAccount();
+        return MyCalendars();
         break;
       case 2:
-        return MyCalendars();
+        return MyAccount();
         break;
     }
     return Container();
@@ -42,11 +42,11 @@ class _MainPageState extends State<MainPage> {
               style: TextStyle(fontSize: 13),
             )),
         BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            title: Text('마이페이지', style: TextStyle(fontSize: 13))),
-        BottomNavigationBarItem(
             icon: Icon(Icons.event),
             title: Text('페이지', style: TextStyle(fontSize: 13))),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            title: Text('마이페이지', style: TextStyle(fontSize: 13))),
       ],
       currentIndex: _bottomNavigationProvider.currentPage,
       selectedItemColor: Colors.red,

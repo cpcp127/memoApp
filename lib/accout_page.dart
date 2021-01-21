@@ -16,7 +16,7 @@ class MyAccount extends StatefulWidget {
 
 class _MyAccountState extends State<MyAccount> {
   String _date =
-      DateFormat("yyyy년 MM월 dd일").format(DateTime.now()).replaceAll(" ", "");
+      DateFormat("yyyy년 M월 dd일").format(DateTime.now()).replaceAll(" ", "");
   List<Map<dynamic, dynamic>> lists = [];
   final double circleRadius = 100.0;
   final double circleBorderWidth = 8.0;
@@ -83,7 +83,7 @@ class _MyAccountState extends State<MyAccount> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 35),
                                 child: Text(
-                                  user.displayName + " 님",
+                                  user.displayName ?? '' + " 님",
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 20),
                                 ),
@@ -98,8 +98,18 @@ class _MyAccountState extends State<MyAccount> {
                               FutureBuilder(
                                   //오늘 할일 FutureBuilder
                                   future: dbref
-                                      .child(user.displayName)
-                                      .child(_date)
+                                      .child(user.displayName ?? '')
+                                      .child(
+                                          DateTime.now().year.toString() + "년")
+                                      .child(
+                                          DateTime.now().month.toString() + "월")
+                                      .orderByChild("날짜")
+                                      .equalTo(DateTime.now().year.toString() +
+                                          "년" +
+                                          DateTime.now().month.toString() +
+                                          "월" +
+                                          DateTime.now().day.toString() +
+                                          "일")
                                       .once(),
                                   builder: (context,
                                       AsyncSnapshot<DataSnapshot> snapshot) {
