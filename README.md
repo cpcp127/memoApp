@@ -36,8 +36,8 @@
 - 저장 버튼을 클릭하면 snackbar가 나와서 저장됬다고 알려준다
 
 
-### 메모지 화면
-- schedule_main.dart(https://github.com/cpcp127/memoApp/blob/master/lib/schedule_main.dart)
+### 일정 달력 화면
+- schedule_main.dart(https://github.com/cpcp127/memoApp/blob/master/lib/calendars.dart)
 
 <img src="https://user-images.githubusercontent.com/53109077/105490180-bfd4bd80-5cf7-11eb-9155-ee7e8975bafd.jpg" width="300"></img>
 
