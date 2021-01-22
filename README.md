@@ -39,7 +39,7 @@
 ### 메모지 화면
 - schedule_main.dart(https://github.com/cpcp127/memoApp/blob/master/lib/schedule_main.dart)
 
-<img src="(https://user-images.githubusercontent.com/53109077/105490180-bfd4bd80-5cf7-11eb-9155-ee7e8975bafd.jpg" width="300"></img>
+<img src="https://user-images.githubusercontent.com/53109077/105490180-bfd4bd80-5cf7-11eb-9155-ee7e8975bafd.jpg" width="300"></img>
 
 - table calendar를 사용하여 달력 형태로 저장한 일정을 보여줌
 - 날짜를 클릭시 하단 처럼 일정들을 보여준다
