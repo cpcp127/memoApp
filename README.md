@@ -20,18 +20,16 @@
 
 - 초기 화면이고 하단 'Google 계정으로 로그인' 버튼 클릭하면 왼쪽 화면 처럼 구글 로그인 창이 나온다
 
-### Main
-- main_page.dart(https://github.com/cpcp127/memoApp/blob/master/lib/main_page.dart)
 
-<img src="https://user-images.githubusercontent.com/53109077/100850778-a5d0e880-34c7-11eb-9db1-76c613a245e8.jpg" width="300"></img>
-<img src="https://user-images.githubusercontent.com/53109077/100850837-bc773f80-34c7-11eb-983a-00d5cf4574df.jpg" width="300"></img>
 - bottomNavigationBar로 메모하기, 마이페이지, 메모지 아이템을 설정해줬다
 - appbar 왼쪽에 열쇠 아이콘을 클릭하면 alertdialog가 뜨며 로그아웃이 가능하다
 
 ### 메모하기 화면
 - memoboard.dart(https://github.com/cpcp127/memoApp/blob/master/lib/memoboard.dart)
 
-<img src="https://user-images.githubusercontent.com/53109077/100850492-3824bc80-34c7-11eb-9168-f88d0d28b6d0.jpg" width="300"></img>
+<img src="https://user-images.githubusercontent.com/53109077/105489785-2a392e00-5cf7-11eb-968f-7a04f7c48c63.jpg" width="300"></img>
+
+- bottomNavigationBar로 메모하기, 일정 달력, 마이페이지 아이템을 설정해줬다
 - dropdownbutton을 통해 과제, 약속, 기타 로 분류를 설정한다
 - textfield에 메모를 적는다
 - 날짜 버튼을 클릭하면 datapicker가 나와서 날짜 설정이 가능하다
