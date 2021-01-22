@@ -35,24 +35,24 @@
 - 날짜 버튼을 클릭하면 datapicker가 나와서 날짜 설정이 가능하다
 - 저장 버튼을 클릭하면 snackbar가 나와서 저장됬다고 알려준다
 
-### 마이페이지 화면
-- account_page.dart(https://github.com/cpcp127/memoApp/blob/master/lib/accout_page.dart)
-
-<img src="https://user-images.githubusercontent.com/53109077/100848113-09591700-34c4-11eb-97b7-041ee42c9084.jpg" width="300"></img>
-- 구글 계정 정보를 받아온 화면이다
-- user.displayname, user.email, user.photoUrl 을 통해 이름, 이메일, 프로필 사진을 받아온다
-- database에서 날짜를 받아와 오늘까지 해야 할 일 개수를 알려준다
 
 ### 메모지 화면
 - schedule_main.dart(https://github.com/cpcp127/memoApp/blob/master/lib/schedule_main.dart)
 
-<img src="https://user-images.githubusercontent.com/53109077/100848670-c9defa80-34c4-11eb-8318-0980137742f2.jpg" width="300"></img>
-- DateTime.now를 사용해 오늘과 일주일 까지 일정을 보여주기 위해 버튼을 만들었다
+<img src="(https://user-images.githubusercontent.com/53109077/105490180-bfd4bd80-5cf7-11eb-9155-ee7e8975bafd.jpg" width="300"></img>
 
-### 메모 목록 화면
-- schedule_list(https://github.com/cpcp127/memoApp/tree/master/lib/schedule_list)
+- table calendar를 사용하여 달력 형태로 저장한 일정을 보여줌
+- 날짜를 클릭시 하단 처럼 일정들을 보여준다
+- 일정 옆에 휴지통 아이콘을 클릭시 alert으로 삭제할거냐 확인하고 삭제
+- event를 통해 어떤 날짜에 일정이 저장되있는지 보여주는지 더 공부하고 추가 예정
 
-<img src="https://user-images.githubusercontent.com/53109077/100849105-6acdb580-34c5-11eb-96a4-31929bfa94a1.jpg" width="300"></img>
-- 메모지 화면에서 이동한 날짜에 따른 메모 목록화면이다
-- 분류, 메모, 날짜를 card위젯에 넣어서 리스트뷰로 보여준다
+### 마이페이지 화면
+- account_page.dart(https://github.com/cpcp127/memoApp/blob/master/lib/accout_page.dart)
+
+<img src="https://user-images.githubusercontent.com/53109077/105490402-12ae7500-5cf8-11eb-81ea-0495af2f9014.jpg" width="300"></img>
+- 구글 계정 정보를 받아온 화면이다
+- user.displayname, user.email, user.photoUrl 을 통해 이름, 이메일, 프로필 사진을 받아온다
+- database에서 날짜를 받아와 오늘까지 해야 할 일 개수를 알려준다
+- 로그아웃 버튼 클릭시 alert으로 로그아웃을 할지 안할지 다시 물어보고 로그아웃
+
 
